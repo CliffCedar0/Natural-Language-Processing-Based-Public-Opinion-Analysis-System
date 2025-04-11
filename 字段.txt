@@ -1,0 +1,3 @@
+Tieba
+"area","tid","author","authorImg","title","content","lieNum","replyNum","postTime"
+'comAuthor','comTime''comAddress','comContent','comLike','comReply'
