@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+
+{% if messages %}
+    <script>
+        {% for message in messages %}
+            alert('{{ message }}')
+        {% endfor %}
+    </script>
+{% endif %}
+
+<html class="app-ui">
+
+<head>
+    <!-- Meta -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+    <!-- Document title -->
+    <title></title>
+
+    <meta name="description" content="AppUI - Admin Dashboard Template & UI Framework" />
+    <meta name="author" content="rustheme" />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/static/assets/img/favicons/apple-touch-icon.png" />
+    <link rel="icon" href="/static/pa1.png" />
+
+    <!-- Google fonts -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,900%7CRoboto+Slab:300,400%7CRoboto+Mono:400" />
+
+    <!-- Page JS Plugins CSS -->
+    <link rel="stylesheet" href="/static/assets/js/plugins/slick/slick.min.css" />
+    <link rel="stylesheet" href="/static/assets/js/plugins/slick/slick-theme.min.css" />
+    <link rel="stylesheet" href="/static/assets/js/plugins/datatables/jquery.dataTables.min.css" />
+
+    <!-- AppUI CSS stylesheets -->
+    <link rel="stylesheet" id="css-font-awesome" href="/static/assets/css/font-awesome.css" />
+    <link rel="stylesheet" id="css-ionicons" href="/static/assets/css/ionicons.css" />
+    <link rel="stylesheet" id="css-bootstrap" href="/static/assets/css/bootstrap.css" />
+    <link rel="stylesheet" id="css-app" href="/static/assets/css/app.css" />
+    <link rel="stylesheet" id="css-app-custom" href="/static/assets/css/app-custom.css" />
+    <!-- End Stylesheets -->
+</head>
+
+<body class="app-ui layout-has-drawer layout-has-fixed-header">
+<div class="app-layout-canvas">
+    <div class="app-layout-container">
+
+        <!-- Drawer -->
+        <aside class="app-layout-drawer">
+
+            <!-- Drawer scroll area -->
+            <div class="app-layout-drawer-scroll">
+                <!-- Drawer logo -->
+                <div style="display: flex">
+                    <div id="logo" class="drawer-header" style="flex:1">
+                        <a href="#"><img class="img-responsive" src="/static/pa1.png" title="AppUI" alt="AppUI" /></a>
+                    </div>
+                    <div style="color: black;flex:2;font-size:18px;line-height: 70px;font-family: 方正粗黑宋简体;font-weight: bolder">舆情数据分析系统</div>
+                </div>
+
+                <!-- Drawer navigation -->
+                <nav class="drawer-main">
+                    <nav style="font-family: 方正粗黑宋简体;font-size: 15px;color: black;height: 1px">
+                        <ul class="nav nav-drawer">
+                            <li class="nav-item nav-drawer-header">首页</li>
+                            <li class="nav-item ">
+                                <a href="/myApp/index/"><i class="fa fa-home" style="color:limegreen"></i> 主页</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="/myApp/selfInfo/"><i class="	fa fa-user" style="color:limegreen"></i> 个人信息</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="/myApp/rag/"><i class="	ion-chatboxes" style="color:limegreen"></i>检索增强生成</a>
+                            </li>
+
+                            <li class="nav-item nav-drawer-header" style="font-family: 方正粗黑宋简体">数据总览</li>
+
+                            <li class="nav-item nav-item-has-subnav">
+                                <a href="javascript:void(0)"><i class="fa fa-file-text-o" style="color:limegreen"></i> 帖子数据</a>
+                                <ul class="nav nav-subnav">
+
+                                    <li>
+                                        <a href="/myApp/weiboData/" style="font-size: 14px">微博数据浏览</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/myApp/tiebaData/" style="font-size: 14px">贴吧数据浏览</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item nav-item-has-subnav">
+                                <a href="javascript:void(0)"><i class="fa fa-comments-o" style="color:limegreen"></i> 评论数据</a>
+                                <ul class="nav nav-subnav">
+
+                                    <li>
+                                        <a href="/myApp/weiboComment/5106088976324310" style="font-size: 14px">微博评论数据</a>
+                                    </li>
+
+                                                                        <li>
+                                        <a href="/myApp/tiebaComment/9265049618" style="font-size: 14px">贴吧评论数据</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+
+                            <li class="nav-item nav-item-has-subnav">
+                                <a href="javascript:void(0)"><i class="ion-clipboard" style="color:limegreen"></i>主题建模</a>
+                                <ul class="nav nav-subnav">
+
+                                    <li>
+                                        <a href="/myApp/LDA" style="font-size: 14px">LDA可视化</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/myApp/Bertopic" style="font-size: 14px">Bertopic可视化</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/myApp/Textclustering" style="font-size: 14px">文本聚类分析</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/myApp/hotData/"><i class="	ion-flame" style="color:orangered;"></i> 热词统计</a>
+                            </li>
+
+
+                            <li class="nav-item nav-drawer-header" style="font-family: 方正粗黑宋简体">数据分析</li>
+
+                            <li class="nav-item">
+                                <a href="/myApp/postChart/"><i class="	fa fa-clone" style="color:limegreen";></i> 文章分析</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="/myApp/CommentChart/"><i class="fa fa-pencil-square-o" style="color:limegreen"></i> 评论分析</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="/myApp/addressChart/"><i class="ion-android-pin" style="color:limegreen"></i> 地址分析</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="/myApp/emoChart/"><i class="fa fa-bar-chart" style="color:limegreen"></i> 舆情分析</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="/myApp/analysis/"><i class="ion-happy-outline" style="color:limegreen"></i> 情感分析</a>
+                            </li>
+
+                            <li class="nav-item nav-drawer-header" style="font-family: 方正粗黑宋简体">词云图</li>
+
+                            <li class="nav-item ">
+                                <a href="/myApp/weiboCloud/"><i class="fa fa-weibo" style="color:deepskyblue"></i> 微博词云</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a href="/myApp/tiebaCloud/"><i class="fa fa-tumblr-square" style="color:deepskyblue"></i> 贴吧词云</a>
+                            </li>
+                            <li class="nav-item ">
+                                <a href="/myApp/commentCloud/"><i class="fa fa-commenting" style="color:deepskyblue"></i> 评论词云</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </nav>
+            </div>
+            <!-- End drawer scroll area -->
+        </aside>
+        <!-- End drawer -->
+
+        <!-- Header -->
+        <header class="app-layout-header">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar-collapse" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <button class="pull-left hidden-lg hidden-md navbar-toggle" type="button" data-toggle="layout" data-action="sidebar_toggle">
+                            <span class="sr-only">Toggle drawer</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <span class="navbar-page-title" style="font-family: 方正粗黑宋简体;font-size: 25px">
+					
+					            贴吧词云图
+				                </span>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="header-navbar-collapse">
+
+                        <ul class="nav navbar-nav navbar-right navbar-toolbar hidden-sm hidden-xs">
+
+                            <li class="dropdown dropdown-profile">
+                                <a href="javascript:void(0)" data-toggle="dropdown">
+                                            <span style="font-family: 方正粗黑宋简体">
+                                            <span class="m-r-sm" style="font-size: 25px;color: #8fdf82">{{ userInfo.username }}<span class="caret"></span></span>
+                                            <img class="img-avatar img-avatar-48" src="/static/assets/img/avatars/djs.jpeg" alt="User profile pic" />
+                                            </span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="dropdown-header">
+                                        您好! {{ userInfo.username }}
+                                    </li>
+                                    <li>
+                                        <a href="/myApp/selfInfo/">个人信息</a>
+                                    </li>
+                                    <li>
+                                        <a href="/myApp/logout/">退出登录</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <!-- .navbar-right -->
+                    </div>
+                </div>
+                <!-- .container-fluid -->
+            </nav>
+            <!-- .navbar-default -->
+        </header>
+        <!-- End header -->
+
+        <main class="app-layout-content">
+
+            <!-- Page Content -->
+            <div class="container-fluid p-y-md">
+
+                <div class="row">
+                    <div class="col-md-12" style="height: 600px">
+                        <!-- Normal Form -->
+                        <div class="card">
+                            <div class="card-header" style="background: gold">
+                                <h4 style="text-align: center;font-family: 方正粗黑宋简体;font-size: 20px">词云图</h4>
+                            </div>
+                            <div class="card-block" style="height: 600px">
+
+                                <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/base_tables_datatables.js -->
+                                <div id="mainA" style="width: 100%;height: 450px;text-align: center">
+                                    <img src="/static/assets/cloudImg/Cloudbaiduyun.png" alt="" style="height: 500px;text-align: center;margin-top: 50px">
+                                </div>
+                            </div>
+                            <!-- .card-block -->
+                        </div>
+                        <!-- End Normal Form -->
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- .container-fluid -->
+            <!-- End Page Content -->
+
+        </main>
+
+    </div>
+    <!-- .app-layout-container -->
+</div>
+<!-- .app-layout-canvas -->
+
+<!-- Apps Modal -->
+<!-- Opens from the button in the header -->
+<div id="apps-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-sm modal-dialog modal-dialog-top">
+        <div class="modal-content">
+            <!-- Apps card -->
+            <div class="card m-b-0">
+                <div class="card-header bg-app bg-inverse">
+                    <h4>Apps</h4>
+                    <ul class="card-actions">
+                        <li>
+                            <button data-dismiss="modal" type="button"><i class="ion-close"></i></button>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card-block">
+                    <div class="row text-center">
+                        <div class="col-xs-6">
+                            <a class="card card-block m-b-0 bg-app-secondary bg-inverse" href="index.html">
+                                <i class="ion-speedometer fa-4x"></i>
+                                <p>Admin</p>
+                            </a>
+                        </div>
+                        <div class="col-xs-6">
+                            <a class="card card-block m-b-0 bg-app-tertiary bg-inverse" href="frontend_home.html">
+                                <i class="ion-laptop fa-4x"></i>
+                                <p>Frontend</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- .card-block -->
+            </div>
+            <!-- End Apps card -->
+        </div>
+    </div>
+</div>
+<!-- End Apps Modal -->
+
+<div class="app-ui-mask-modal"></div>
+
+<!-- AppUI Core JS: jQuery, Bootstrap, slimScroll, scrollLock and App.js -->
+<script src="/static/assets/js/core/jquery.min.js"></script>
+<script src="/static/assets/js/core/bootstrap.min.js"></script>
+<script src="/static/assets/js/core/jquery.slimscroll.min.js"></script>
+<script src="/static/assets/js/core/jquery.scrollLock.min.js"></script>
+<script src="/static/assets/js/core/jquery.placeholder.min.js"></script>
+<script src="/static/assets/js/app.js"></script>
+<script src="/static/assets/js/app-custom.js"></script>
+
+<!-- Page Plugins -->
+<script src="/static/assets/js/plugins/slick/slick.min.js"></script>
+<script src="/static/assets/js/plugins/chartjs/Chart.min.js"></script>
+<script src="/static/assets/js/plugins/flot/jquery.flot.min.js"></script>
+<script src="/static/assets/js/plugins/flot/jquery.flot.pie.min.js"></script>
+<script src="/static/assets/js/plugins/flot/jquery.flot.stack.min.js"></script>
+<script src="/static/assets/js/plugins/flot/jquery.flot.resize.min.js"></script>
+<!-- Page JS Plugins -->
+<script src="/static/assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
+
+<!-- Page JS Code -->
+<script src="/static/assets/js/pages/base_tables_datatables.js"></script>
+
+<!-- Page JS Code -->
+<script src="/static/assets/js/pages/index.js"></script>
+<script>
+    $(function()
+    {
+        // Init page helpers (Slick Slider plugin)
+        App.initHelpers('slick');
+    });
+</script>
+<script src="/static/assets/echarts.js"></script>
+<script src="/static/assets/china.js"></script>
+<script>
+    var chartDom = document.getElementById('mainA');
+    var myChart = echarts.init(chartDom);
+    // 数据纯属虚构
+    var data = {{ tiebaMapData |safe }}
+
+    var yData = [];
+    var barData = [];
+
+    // 先对原始数据按照数值大小进行从大到小排序（假设数据中表示数值的属性是 'value'，可根据实际情况调整）
+    data.sort((a, b) => b.value - a.value);
+
+    for (var i = 0; i < 10; i++) {
+        barData.push(data[i]);
+        yData.push(i + data[i].name);
+    }
+
+    var option = {
+        title: [{
+            show: true,
+            text: '贴吧发布量Top10 IP地址',
+            textStyle: {
+                color: '#2D3E53',
+                fontSize: 18
+            },
+            right: 180,
+            top: 100
+        }],
+        tooltip: {
+            show: true,
+            formatter: function (params) {
+                return params.name + '：' + params.data['value'] + '个'
+            },
+        },
+        visualMap: {
+            type: 'continuous',
+            orient: 'horizontal',
+            itemWidth: 10,
+            itemHeight: 80,
+            text: ['高', '低'],
+            showLabel: true,
+            seriesIndex: [0],
+            min: 0,
+            max: 25,
+            inRange: {
+                color: ['#6FCF6A', '#FFFD64', '#FF5000']
+            },
+            textStyle: {
+                color: '#7B93A7'
+            },
+            bottom: 30,
+            left: 'left',
+        },
+        grid: {
+            right: 10,
+            top: 135,
+            bottom: 100,
+            width: '20%'
+        },
+        xAxis: {
+            show: false
+        },
+        yAxis: {
+            type: 'category',
+            inverse: true,
+            nameGap: 16,
+            axisLine: {
+                show: false,
+                lineStyle: {
+                    color: '#ddd'
+                }
+            },
+            axisTick: {
+                show: false,
+                lineStyle: {
+                    color: '#ddd'
+                }
+            },
+            axisLabel: {
+                interval: 0,
+                margin: 85,
+                textStyle: {
+                    color: '#455A74',
+                    align: 'left',
+                    fontSize: 14
+                },
+                rich: {
+                    a: {
+                        color: '#fff',
+                        backgroundColor: '#FAAA39',
+                        width: 20,
+                        height: 20,
+                        align: 'center',
+                        borderRadius: 2
+                    },
+                    b: {
+                        color: '#fff',
+                        backgroundColor: '#4197FD',
+                        width: 20,
+                        height: 20,
+                        align: 'center',
+                        borderRadius: 2
+                    }
+                },
+                formatter: function (params) {
+                    if (parseInt(params.slice(0, 1)) < 3) {
+                        return [
+                            '{a|' + (parseInt(params.slice(0, 1)) + 1) + '}' + '  ' + params.slice(1)
+                        ].join('\n')
+                    } else {
+                        return [
+                            '{b|' + (parseInt(params.slice(0, 1)) + 1) + '}' + '  ' + params.slice(1)
+                        ].join('\n')
+                    }
+                }
+            },
+            data: yData
+        },
+        geo: {
+            roam: true,
+            map: 'china',
+            left: 'left',
+            right: '300',
+            layoutSize: '1',
+            label: {
+                normal: {
+                    show:true,
+                    color:'black',
+                    fontSize:'13',
+                },
+                emphasis: {
+                    show: true,
+                    textStyle:{
+                        color:'white',
+                        fontSize:'10px'
+                    },
+                }
+            },
+            itemStyle: {
+                emphasis: {
+                    areaColor: '#fff464'
+                }
+            }
+        },
+        series: [
+            {
+                name: 'mapSer',
+                type: 'map',
+                roam: false,
+                geoIndex: 0,
+                label: {
+                    show: false,
+                },
+                data: data
+            },
+            {
+                name: 'barSer',
+                type: 'bar',
+                roam: false,
+                visualMap: false,
+                zlevel: 2,
+                barMaxWidth: 8,
+                barGap: 0,
+                itemStyle: {
+                    normal: {
+                        color: function (params) {
+                            // build a color map as your need.
+                            var colorList = [{
+                                colorStops: [{
+                                    offset: 0,
+                                    color: '#FFD119' // 0% 处的颜色
+                                }, {
+                                    offset: 1,
+                                    color: '#FFAC4C' // 100% 处的颜色
+                                }]
+                            },
+                                {
+                                    colorStops: [{
+                                        offset: 0,
+                                        color: '#00C0FA' // 0% 处的颜色
+                                    }, {
+                                        offset: 1,
+                                        color: '#2F95FA' // 100% 处的颜色
+                                    }]
+                                }
+                            ];
+                            if (params.dataIndex < 3) {
+                                return colorList[0]
+                            } else {
+                                return colorList[1]
+                            }
+                        },
+                        barBorderRadius: 15
+                    }
+                },
+                data: barData
+            },]
+    };
+    myChart.resize();
+    option && myChart.setOption(option);
+</script>
+<script>
+    var chartDom = document.getElementById('mainB');
+    var myChart = echarts.init(chartDom);
+    // 数据纯属虚构
+    var data = {{ weiboMapData |safe }}
+
+    var yData = [];
+    var barData = [];
+
+    // 先对原始数据按照数值大小进行从大到小排序（假设数据中表示数值的属性是 'value'，可根据实际情况调整）
+    data.sort((a, b) => b.value - a.value);
+
+    for (var i = 0; i < 10; i++) {
+        barData.push(data[i]);
+        yData.push(i + data[i].name);
+    }
+
+    var option = {
+        title: [{
+            show: true,
+            text: '微博发布量Top10 IP地址',
+            textStyle: {
+                color: '#2D3E53',
+                fontSize: 18
+            },
+            right: 180,
+            top: 100
+        }],
+        tooltip: {
+            show: true,
+            formatter: function (params) {
+                return params.name + '：' + params.data['value'] + '个'
+            },
+        },
+        visualMap: {
+            type: 'continuous',
+            orient: 'horizontal',
+            itemWidth: 10,
+            itemHeight: 80,
+            text: ['高', '低'],
+            showLabel: true,
+            seriesIndex: [0],
+            min: 0,
+            max: 15,
+            inRange: {
+                color: ['#ADD8E6', '#87CEEB', '#005888']
+            },
+            textStyle: {
+                color: '#7B93A7'
+            },
+            bottom: 30,
+            left: 'left',
+        },
+        grid: {
+            right: 10,
+            top: 135,
+            bottom: 100,
+            width: '20%'
+        },
+        xAxis: {
+            show: false
+        },
+        yAxis: {
+            type: 'category',
+            inverse: true,
+            nameGap: 16,
+            axisLine: {
+                show: false,
+                lineStyle: {
+                    color: '#ddd'
+                }
+            },
+            axisTick: {
+                show: false,
+                lineStyle: {
+                    color: '#ddd'
+                }
+            },
+            axisLabel: {
+                interval: 0,
+                margin: 85,
+                textStyle: {
+                    color: '#455A74',
+                    align: 'left',
+                    fontSize: 14
+                },
+                rich: {
+                    a: {
+                        color: '#fff',
+                        backgroundColor: '#FAAA39',
+                        width: 20,
+                        height: 20,
+                        align: 'center',
+                        borderRadius: 2
+                    },
+                    b: {
+                        color: '#fff',
+                        backgroundColor: '#4197FD',
+                        width: 20,
+                        height: 20,
+                        align: 'center',
+                        borderRadius: 2
+                    }
+                },
+                formatter: function (params) {
+                    if (parseInt(params.slice(0, 1)) < 3) {
+                        return [
+                            '{a|' + (parseInt(params.slice(0, 1)) + 1) + '}' + '  ' + params.slice(1)
+                        ].join('\n')
+                    } else {
+                        return [
+                            '{b|' + (parseInt(params.slice(0, 1)) + 1) + '}' + '  ' + params.slice(1)
+                        ].join('\n')
+                    }
+                }
+            },
+            data: yData
+        },
+        geo: {
+            roam: true,
+            map: 'china',
+            left: 'left',
+            right: '300',
+            layoutSize: '1',
+            label: {
+                normal: {
+                    show:true,
+                    color:'black',
+                    fontSize:'13',
+                },
+                emphasis: {
+                    show: true,
+                    textStyle:{
+                        color:'white',
+                        fontSize:'10px'
+                    },
+                }
+            },
+            itemStyle: {
+                emphasis: {
+                    areaColor: '#87CEFA'
+                }
+            }
+        },
+        series: [
+            {
+                name: 'mapSer',
+                type: 'map',
+                roam: false,
+                geoIndex: 0,
+                label: {
+                    show: false,
+                },
+                data: data
+            },
+            {
+                name: 'barSer',
+                type: 'bar',
+                roam: false,
+                visualMap: false,
+                zlevel: 2,
+                barMaxWidth: 8,
+                barGap: 0,
+                itemStyle: {
+                    normal: {
+                        color: function (params) {
+                            // build a color map as your need.
+                            var colorList = [{
+                                colorStops: [{
+                                    offset: 0,
+                                    color: '#FFD119' // 0% 处的颜色
+                                }, {
+                                    offset: 1,
+                                    color: '#FFAC4C' // 100% 处的颜色
+                                }]
+                            },
+                                {
+                                    colorStops: [{
+                                        offset: 0,
+                                        color: '#00C0FA' // 0% 处的颜色
+                                    }, {
+                                        offset: 1,
+                                        color: '#2F95FA' // 100% 处的颜色
+                                    }]
+                                }
+                            ];
+                            if (params.dataIndex < 3) {
+                                return colorList[0]
+                            } else {
+                                return colorList[1]
+                            }
+                        },
+                        barBorderRadius: 15
+                    }
+                },
+                data: barData
+            },]
+    };
+    myChart.resize();
+    option && myChart.setOption(option);
+</script>
+
+
+</body>
+
+</html>
+
+
+
